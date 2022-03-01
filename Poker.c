@@ -10,13 +10,11 @@
 
 int Shuffcard(int cards[])
 {
-	
 	int t;
 	int i;
 	int desk[52];	
 	for (i=0;i<52;i++)
 		desk[i] = (i/13+3)*100 + i%13 + 1;
-
 	srand(time(NULL));
 	for (i = 0; i < 52; i++)
 	{
@@ -40,22 +38,22 @@ void Piccard(int num)
 	Pnum = num % 100;
 	switch (Pnum)
 	{
-		case 1: 
-		 	
+		case 1:
+			printf(" _______\n");
+			printf("|A      |\n");
+			printf("|       |\n");
+			printf("|   %c   |\n",fl);
+			printf("|       |\n");
+			printf("|      A|\n");
+			printf("|_______|\n");
+			break;
 		case 2:
-		
 		case 3:
-
 		case 4:
-		
 		case 5:
-		
 		case 6:
-		
 		case 7:
-		
 		case 8:
-	
 		case 9:
 	{
 			printf(" _______\n");
