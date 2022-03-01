@@ -296,7 +296,6 @@ int Playgame(void){
 				printf("╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░\n");
 				}
 			
-		}
 		else{
 			clear();
 			printf("Stand\n");
@@ -341,14 +340,4 @@ int main()
 {
 	clear();
 	Playgame();
-	char Ag;
-	printf("Do you want to play again y|n : ");
-	do{
-		Ag = getchar();
-	} while (Ag!='y' && Ag!='n');
-	if (Ag == 'y')
-	{
-		printf("\nLet's go again\n");
-		main();
-	}
 }
