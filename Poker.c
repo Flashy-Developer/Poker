@@ -8,15 +8,28 @@
 #define clear()    system("clear")
 #endif
 
+char how(void);
 int Playgame(void);
 int Shuffcard(int cards[]);
 void Piccard(int num);
 
-
+char how(void){
+	char name[200];
+	FILE *fp_htp;
+	printf("How to play:\n");
+	fp_htp = fopen("h.txt","r");
+	while(feof(fp_htp)==0)
+    {
+        fscanf(fp_htp,"%s",&name);       
+        printf("%s\t\n",name);
+    }
+	return 1;
+}
 
 int main()
 {
 	clear();
+	how();
 	Playgame();
 
 }
