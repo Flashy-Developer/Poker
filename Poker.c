@@ -13,27 +13,26 @@ int Playgame(void);
 int Shuffcard(int cards[]);
 void Piccard(int num);
 
-char how(void){
+int main()
+{
+	clear();
+	Playgame();
+}
+
+
+
+int Playgame(void){
+	
 	char name[200];
 	FILE *fp_htp;
 	printf("How to play:\n");
 	fp_htp = fopen("h.txt","r");
 	while(feof(fp_htp)==0)
-    {
+    	{
         fscanf(fp_htp,"%s",&name);       
         printf("%s\t\n",name);
-    }
-	return 1;
-}
-
-int main()
-{
-	clear();
-	how();
-	Playgame();
-}
-
-int Playgame(void){
+    	}
+	
 	typedef struct{
 		int Pycards[5];
 		int psum;
@@ -99,6 +98,15 @@ int Playgame(void){
 	printf("Your score is : %d\n",Py.psum);	
 	if (Dl.bsum>7||Py.psum>7){
 		clear();
+		char name[200];
+		FILE *fp_htp;
+		printf("How to play:\n");
+		fp_htp = fopen("h.txt","r");
+		while(feof(fp_htp)==0)
+    		{
+        	fscanf(fp_htp,"%s",&name);       
+        	printf("%s\t\n",name);
+    		}
 		printf("Your card is \n");
 		Piccard(Py.Pycards[0]);
 	    Piccard(Py.Pycards[1]);
@@ -207,7 +215,8 @@ int Playgame(void){
 			}
 		else{
 			clear();
-			printf("Stand\n");
+			printf("█▀ ▀█▀ ▄▀█ █▄░█ █▀▄\n");
+			printf("▄█ ░█░ █▀█ █░▀█ █▄▀\n");
 			printf("Your card is \n");
 			Piccard(Py.Pycards[0]);
 	    		Piccard(Py.Pycards[1]);
