@@ -12,11 +12,15 @@ int Playgame(void);
 int Shuffcard(int cards[]);
 void Piccard(int num);
 
+
+
 int main()
 {
 	clear();
 	Playgame();
+
 }
+
 
 int Playgame(void){
 	typedef struct{
@@ -32,7 +36,7 @@ int Playgame(void){
 	int i;
 	int cards[52];
 	int Pok=0;
-	char j ;
+	char j ='n';
 	Shuffcard(cards);
 	Py.Pycards[0]=cards[0];
 	Py.Pycards[1]=cards[1];
@@ -70,10 +74,7 @@ int Playgame(void){
 		}
 	}
 	if(Py.psum>9)
-	    Py.psum=Py.psum-10;
-	else if (Py.psum>=20)
-		Py.psum=Py.psum-20;
-	
+	    Py.psum=Py.psum%10;
 	for (i=0;i<2;i++){
 		if(Dl.Dlcards[i]%100==11||Dl.Dlcards[i]%100==12||Dl.Dlcards[i]%100==13){
 		 Dl.bsum=Dl.bsum+0;
@@ -83,9 +84,7 @@ int Playgame(void){
 		}
 	}
 	if(Dl.bsum>9)
-		Dl.bsum=Dl.bsum-10;
-	else if (Dl.bsum>=20)
-		Dl.bsum=Dl.bsum-20;
+		Dl.bsum=Dl.bsum%10;
 	printf("Your score is : %d\n",Py.psum);	
 	if (Dl.bsum>7||Py.psum>7){
 		clear();
@@ -95,8 +94,8 @@ int Playgame(void){
 		printf("Dealer card is \n");
 		Piccard(Dl.Dlcards[0]);
 	    Piccard(Dl.Dlcards[1]);
-		printf("Dealer score is : %d\n",Dl.bsum);
 		printf("Your score is : %d\n",Py.psum);
+		printf("Dealer score is : %d\n",Dl.bsum);
 		i=0;
 		for (i=8;i<=9;i++){
 			if (Dl.bsum==i){
@@ -120,11 +119,14 @@ int Playgame(void){
 		}
 	}
 	if(Pok==0){
-		printf("Want more cards? input y|n : ");
-		j='\0';
-		scanf("%c",&j);
+		printf("Want more cards? Input y or n:");
+		do{
+			j = getchar();
+		} while (j!='y' &&j!='n');
+		if(j=='y'){
+			clear();
 			printf("\nyour card 3 is  \n");
-			Piccard(Dl.Dlcards[2]);
+			Piccard(Py.Pycards[2]);
 			if(Py.Pycards[2]%100==11||Py.Pycards[2]%100==12||Py.Pycards[2]%100==13){
 				Py.psum=Py.psum+0;
 				}
@@ -132,11 +134,7 @@ int Playgame(void){
 				Py.psum=Py.psum+(Py.Pycards[2]%100);
 			}
 			if(Py.psum>9)
-				Py.psum=Py.psum-10;
-			else if (Py.psum>=20)
-				Py.psum=Py.psum-20;
-			else if (Py.psum>=30)
-				Py.psum=Py.psum-30;
+				Py.psum=Py.psum%10;
 			if(Dl.Dlcards[2]%100==11||Dl.Dlcards[2]%100==12||Dl.Dlcards[2]%100==13){
 				Dl.bsum=Dl.bsum+0;
 			}
@@ -144,12 +142,7 @@ int Playgame(void){
 				Dl.bsum=Dl.bsum+(Dl.Dlcards[2]%100);
 			}
 			if(Dl.bsum>9)
-				Dl.bsum=Dl.bsum-10;
-			else if (Dl.bsum>=20)
-				Dl.bsum=Dl.bsum-20;
-			else if (Dl.bsum>=30)
-				Dl.bsum=Dl.bsum-30;
-		    clear();
+				Dl.bsum=Dl.bsum%10;
 			printf("Your card is \n");
 			Piccard(Py.Pycards[0]);
 	    	Piccard(Py.Pycards[1]);
@@ -158,8 +151,9 @@ int Playgame(void){
 			Piccard(Dl.Dlcards[0]);
 	    	Piccard(Dl.Dlcards[1]);
 			Piccard(Dl.Dlcards[2]);
-			printf("Dealer score is : %d\n",Dl.bsum);
 			printf("Your score is : %d\n",Py.psum);
+			printf("Dealer score is : %d\n",Dl.bsum);
+			
 			if(Dl.bsum>Py.psum)
 				{
 				printf("!!!!Dealer Win!!!!\n");
@@ -170,6 +164,7 @@ int Playgame(void){
 			else if (Py.psum==Dl.bsum){
 				printf("!!!!Draw!!!!\n");
 				}
+			}
 		else{
 			clear();
 			printf("Stand\n");
@@ -179,8 +174,9 @@ int Playgame(void){
 			printf("Dealer card is \n");
 			Piccard(Dl.Dlcards[0]);
 	    	Piccard(Dl.Dlcards[1]);
-			printf("Dealer score is : %d\n",Dl.bsum);
 			printf("Your score is : %d\n",Py.psum);
+			printf("Dealer score is : %d\n",Dl.bsum);
+			
 			if(Dl.bsum>Py.psum){
 				printf("!!!!Dealer Win!!!!\n");
 			}
@@ -253,7 +249,7 @@ void Piccard(int num)
 			printf("|       |\n");
 			printf("|   %c   |\n",fl);
 			printf("|       |\n");
-			printf("|     %2d|\n",Pnum);
+			printf("|     %d|\n",Pnum);
 			printf("|_______|\n");
 			break;
 		}
